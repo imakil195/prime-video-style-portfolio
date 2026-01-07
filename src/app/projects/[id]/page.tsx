@@ -108,14 +108,7 @@ export default function ProjectDetailsPage() {
                                     </a>
                                 )}
 
-                                <div className="flex items-center gap-3 ml-2">
-                                    <button className="w-12 h-12 rounded-full border-2 border-gray-400 flex items-center justify-center hover:border-white hover:bg-white/10 transition-colors tooltip" title="Add to Watchlist">
-                                        <Plus className="w-6 h-6 text-gray-200" />
-                                    </button>
-                                    <button className="w-12 h-12 rounded-full border-2 border-gray-400 flex items-center justify-center hover:border-white hover:bg-white/10 transition-colors" title="Share">
-                                        <Share2 className="w-6 h-6 text-gray-200" />
-                                    </button>
-                                </div>
+                                {/* Buttons removed for cleanliness as per final audit */}
                             </div>
 
                             <div className="flex items-center gap-2 text-sm text-gray-400 font-medium mt-4">

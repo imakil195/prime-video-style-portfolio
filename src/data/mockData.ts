@@ -7,7 +7,6 @@ export const ALL_PROJECTS = [
         subTitle: "2025 • Cloud Engineering",
         features: ["Cloud Pub/Sub Messaging", "Dockerized FFmpeg Transcoding", "Signed-URL Secure Uploads", "Firestore Metadata Storage"],
         tags: ["Cloud Run", "Docker", "FFmpeg", "Next.js", "Firebase", "GCP"],
-        image: "/images/project1.jpg",
         featured: true,
         link: "https://yt-web-client-174443553704.us-central1.run.app/",
         github: "https://github.com/imakil195/youtube-clone"
@@ -16,11 +15,10 @@ export const ALL_PROJECTS = [
         id: "project-2",
         title: "TravelStay (Hotel Booking)",
         description: "Full-stack hotel booking app with Node.js/Express backend, MongoDB, JWT auth, and Razorpay payment integration.",
-        longDescription: "Developed a full-stack hotel booking web application similar to Airbnb. Built backend using Node.js/Express.js with RESTful APIs for user management and bookings. Integrated MongoDB via Mongoose and secure authentication using JWT. Features Razorpay integration for real-time payments and a responsive React frontend.",
+        longDescription: "Developed a full-stack hotel booking web application similar to Airbnb. Built backend using Node.js/Express.js with RESTful APIs for user management and bookings. Integrated MongoDB with Mongoose and secure authentication using JWT. Features Razorpay integration for real-time payments and a responsive React frontend.",
         subTitle: "2024 • Full Stack",
         features: ["JWT Authentication", "Razorpay Payment Gateway", "RESTful API Architecture", "MongoDB Aggregations"],
         tags: ["Node.js", "MongoDB", "React", "Razorpay", "Express.js"],
-        image: "/images/project2.jpg",
         featured: true,
         link: "https://travel-app-frontend-ten.vercel.app/",
         github: "https://github.com/imakil195/Travel-App-main"
@@ -33,7 +31,6 @@ export const ALL_PROJECTS = [
         subTitle: "2024 • AI Integration",
         features: ["Google Gemini AI Assistant", "Subject-wise Analytics", "Firebase Cloud Sync", "Glassmorphism UI Design"],
         tags: ["React", "TypeScript", "Firebase", "Gemini API", "Tailwind"],
-        image: "/images/project3.jpg",
         featured: true,
         link: "https://study-buddy-app-nu.vercel.app/",
         github: "https://github.com/imakil195/study-buddy-app"
@@ -46,7 +43,6 @@ export const ALL_PROJECTS = [
         subTitle: "2023 • Web Development",
         features: ["Restaurant Listing APIs", "Order Management System", "User Authentication", "Axios Data Fetching"],
         tags: ["React", "Node.js", "Express.js", "MongoDB", "Redux"],
-        image: "/images/project4.jpg",
         github: "https://github.com/imakil195/Food-Delivery-basic-website"
     },
     {
@@ -57,7 +53,7 @@ export const ALL_PROJECTS = [
         subTitle: "2025 • System Utility",
         features: ["Invisible Overlay Injection", "Cross-Platform Support", "OS Window Composition APIs", "Stealth React UI"],
         tags: ["Electron", "Node.js", "Desktop App", "System API"],
-        image: "/images/project5.jpg",
+
         link: "https://github.com/imakil195/presentation_invisible-overlay/releases/tag/v1.0.0",
         github: "https://github.com/imakil195/presentation_invisible-overlay"
     }
@@ -68,49 +64,59 @@ export const TOP_PROJECTS = ALL_PROJECTS.slice(0, 3);
 // Re-export as MOCK_PROJECTS_ROW for compatibility with existing components
 export const MOCK_PROJECTS_ROW = ALL_PROJECTS;
 
+import {
+    SiJavascript, SiTypescript, SiPython,
+    SiReact, SiHtml5, SiCss3, SiTailwindcss,
+    SiNodedotjs, SiExpress, SiMongodb,
+    SiDocker, SiGooglecloud,
+    SiGithub, SiOpenai, SiAnthropic,
+    SiGit, SiPostman, SiRender, SiVercel
+} from "react-icons/si";
+import { VscVscode } from "react-icons/vsc";
+
 export const SKILLS_DATA = [
     // Languages
-    { id: 'lang1', title: 'JavaScript (ES6+)', level: 'Expert', category: 'Languages' },
-    { id: 'lang2', title: 'TypeScript', level: 'Expert', category: 'Languages' },
-    { id: 'lang3', title: 'Python', level: 'Intermediate', category: 'Languages' },
+    { id: 'lang1', title: 'JavaScript (ES6+)', level: 'Expert', category: 'Languages', icon: SiJavascript },
+    { id: 'lang2', title: 'TypeScript', level: 'Expert', category: 'Languages', icon: SiTypescript },
+    { id: 'lang3', title: 'Python', level: 'Intermediate', category: 'Languages', icon: SiPython },
 
     // Frontend
-    { id: 'fe1', title: 'React.js', level: 'Expert', category: 'Frontend' },
-    { id: 'fe2', title: 'HTML5', level: 'Expert', category: 'Frontend' },
-    { id: 'fe3', title: 'CSS3', level: 'Expert', category: 'Frontend' },
-    { id: 'fe4', title: 'Tailwind CSS', level: 'Expert', category: 'Frontend' },
+    { id: 'fe1', title: 'React.js', level: 'Expert', category: 'Frontend', icon: SiReact },
+    { id: 'fe2', title: 'HTML5', level: 'Expert', category: 'Frontend', icon: SiHtml5 },
+    { id: 'fe3', title: 'CSS3', level: 'Expert', category: 'Frontend', icon: SiCss3 },
+    { id: 'fe4', title: 'Tailwind CSS', level: 'Expert', category: 'Frontend', icon: SiTailwindcss },
 
     // Backend
-    { id: 'be1', title: 'Node.js', level: 'Advanced', category: 'Backend' },
-    { id: 'be2', title: 'Express.js', level: 'Advanced', category: 'Backend' },
-    { id: 'be3', title: 'RESTful APIs', level: 'Advanced', category: 'Backend' },
-    { id: 'be4', title: 'MongoDB', level: 'Advanced', category: 'Backend' },
+    { id: 'be1', title: 'Node.js', level: 'Advanced', category: 'Backend', icon: SiNodedotjs },
+    { id: 'be2', title: 'Express.js', level: 'Advanced', category: 'Backend', icon: SiExpress },
+    { id: 'be3', title: 'RESTful APIs', level: 'Advanced', category: 'Backend', icon: SiNodedotjs }, // Generic Node icon for REST
+    { id: 'be4', title: 'MongoDB', level: 'Advanced', category: 'Backend', icon: SiMongodb },
 
     // Cloud & DevOps
-    { id: 'cd1', title: 'Docker', level: 'Intermediate', category: 'Cloud & DevOps' },
-    { id: 'cd2', title: 'Google Cloud Platform (GCP)', level: 'Intermediate', category: 'Cloud & DevOps' },
+    { id: 'cd1', title: 'Docker', level: 'Intermediate', category: 'Cloud & DevOps', icon: SiDocker },
+    { id: 'cd2', title: 'Google Cloud Platform (GCP)', level: 'Intermediate', category: 'Cloud & DevOps', icon: SiGooglecloud },
 
     // AI Tools
-    { id: 'ai1', title: 'GitHub Copilot', level: 'Advanced', category: 'AI Tools' },
-    { id: 'ai2', title: 'ChatGPT', level: 'Advanced', category: 'AI Tools' },
-    { id: 'ai3', title: 'Claude', level: 'Advanced', category: 'AI Tools' },
-    { id: 'ai4', title: 'Prompt Engineering', level: 'Advanced', category: 'AI Tools' },
-    { id: 'ai5', title: 'AI-assisted Debugging', level: 'Advanced', category: 'AI Tools' },
+    { id: 'ai1', title: 'GitHub Copilot', level: 'Advanced', category: 'AI Tools', icon: SiGithub },
+    { id: 'ai2', title: 'ChatGPT', level: 'Advanced', category: 'AI Tools', icon: SiOpenai },
+    { id: 'ai3', title: 'Claude', level: 'Advanced', category: 'AI Tools', icon: SiAnthropic },
+    { id: 'ai4', title: 'Prompt Engineering', level: 'Advanced', category: 'AI Tools', icon: SiOpenai }, // Generic AI
+    { id: 'ai5', title: 'AI-assisted Debugging', level: 'Advanced', category: 'AI Tools', icon: VscVscode }, // VS Code debugging
 
     // Tools & Platforms
-    { id: 'tp1', title: 'Git', level: 'Advanced', category: 'Tools & Platforms' },
-    { id: 'tp2', title: 'GitHub', level: 'Advanced', category: 'Tools & Platforms' },
-    { id: 'tp3', title: 'VS Code', level: 'Advanced', category: 'Tools & Platforms' },
-    { id: 'tp4', title: 'Postman', level: 'Advanced', category: 'Tools & Platforms' },
-    { id: 'tp5', title: 'Render', level: 'Intermediate', category: 'Tools & Platforms' },
-    { id: 'tp6', title: 'Vercel', level: 'Intermediate', category: 'Tools & Platforms' },
+    { id: 'tp1', title: 'Git', level: 'Advanced', category: 'Tools & Platforms', icon: SiGit },
+    { id: 'tp2', title: 'GitHub', level: 'Advanced', category: 'Tools & Platforms', icon: SiGithub },
+    { id: 'tp3', title: 'VS Code', level: 'Advanced', category: 'Tools & Platforms', icon: VscVscode },
+    { id: 'tp4', title: 'Postman', level: 'Advanced', category: 'Tools & Platforms', icon: SiPostman },
+    { id: 'tp5', title: 'Render', level: 'Intermediate', category: 'Tools & Platforms', icon: SiRender },
+    { id: 'tp6', title: 'Vercel', level: 'Intermediate', category: 'Tools & Platforms', icon: SiVercel },
 ];
 
 export const PROFILE_DATA = {
     name: "Akil Saravanan",
     role: "Full-Stack Developer",
     bio: "Full-stack web developer experienced in building and deploying production-ready applications using React.js, Node.js/Express.js, and MongoDB. Skilled in developing secure, scalable RESTful APIs, integrating payment gateways, and delivering responsive frontend interfaces. Passionate about solving real-world problems through clean code, efficient architecture, and modern development practices. Experienced in leveraging AI tools such as GitHub Copilot, ChatGPT, Claude, and Gemini to accelerate development, enhance problem-solving, and build smarter solutions.",
-    location: "India",
+    location: "India, Bangalore",
     email: "akilsaran195@gmail.com",
     phone: "+91-9611554474",
     social: {

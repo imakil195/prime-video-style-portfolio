@@ -1,14 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { Search, User, Menu } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Search, User, Menu, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { useScrolled } from "@/hooks/useScrolled";
 import { cn } from "@/lib/utils";
 import { SearchOverlay } from "./SearchOverlay";
+import { motion } from "framer-motion";
 
 const NAV_ITEMS = [
-    { label: "Home", href: "/" },
+    { label: "Home", href: "/browse" },
     { label: "About", href: "/about" },
     { label: "Skills", href: "/skills" },
     { label: "Projects", href: "/projects" },
@@ -18,6 +20,7 @@ const NAV_ITEMS = [
 export function Header() {
     const isScrolled = useScrolled(20);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const pathname = usePathname();
 
     return (
         <>
@@ -35,32 +38,77 @@ export function Header() {
                         <Menu className="w-6 h-6" />
                     </button>
 
-                    {/* Logo */}
-                    <Link href="/" className="text-xl md:text-2xl font-bold tracking-tight text-white select-none">
-                        Akil <span className="text-prime-blue">Prime</span>
-                    </Link>
-
-                    {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-6">
-                        {NAV_ITEMS.map((item) => (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                className="text-gray-300 hover:text-white text-sm font-medium transition-colors duration-200"
+                    <div className="flex items-center gap-8">
+                        {/* Logo */}
+                        <Link href="/browse" className="group flex items-center gap-1 text-xl md:text-2xl font-bold tracking-tight text-white select-none">
+                            <motion.span
+                                whileHover={{ x: -2 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
                             >
-                                {item.label}
-                            </Link>
-                        ))}
-                    </nav>
+                                Akil
+                            </motion.span>
+                            <motion.span
+                                className="text-prime-blue"
+                                whileHover={{ x: 2, scale: 1.05, textShadow: "0 0 8px rgba(52, 131, 250, 0.5)" }}
+                                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                            >
+                                Saravanan
+                            </motion.span>
+                        </Link>
+
+                        {/* Desktop Navigation */}
+                        <nav className="hidden md:flex items-center gap-6">
+                            {NAV_ITEMS.map((item) => {
+                                const isActive = pathname === item.href;
+
+                                return (
+                                    <Link
+                                        key={item.href}
+                                        href={item.href}
+                                        className={cn(
+                                            "relative text-sm font-medium transition-colors duration-200 py-1.5 px-1",
+                                            isActive
+                                                ? "text-white"
+                                                : "text-gray-400 hover:text-white"
+                                        )}
+                                    >
+                                        {item.label}
+                                        {isActive && (
+                                            <motion.span
+                                                layoutId="navbar-indicator"
+                                                className="absolute bottom-0 left-0 w-full h-[2px] bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                                                transition={{
+                                                    type: "spring",
+                                                    stiffness: 380,
+                                                    damping: 30
+                                                }}
+                                            />
+                                        )}
+                                    </Link>
+                                );
+                            })}
+                        </nav>
+                    </div>
 
                     {/* Right Actions */}
-                    <div className="ml-auto flex items-center gap-4 text-gray-200">
+                    <div className="ml-auto flex items-center gap-6 text-gray-200">
                         <button
                             onClick={() => setIsSearchOpen(true)}
                             className="hover:text-white transition-colors p-1"
                         >
                             <Search className="w-5 h-5 md:w-6 md:h-6" />
                         </button>
+
+                        <div className="h-6 w-[1px] bg-gray-700 hidden md:block" />
+
+                        {/* Profiles Switcher - Premium Style */}
+                        <Link
+                            href="/"
+                            className="hidden md:flex items-center gap-2 group hover:bg-white/10 px-3 py-1 rounded-md transition-all duration-200"
+                        >
+                            <span className="text-sm font-medium text-gray-300 group-hover:text-white">Profiles</span>
+                            <ChevronDown className="w-3 h-3 text-gray-500 group-hover:text-white transition-colors" />
+                        </Link>
 
                         <Link href="/about" className="hover:text-white transition-colors p-1 flex items-center gap-2">
                             <div className="w-8 h-8 rounded-full bg-gray-700 overflow-hidden flex items-center justify-center border border-transparent hover:border-white transition-all">

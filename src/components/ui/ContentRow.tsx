@@ -64,16 +64,17 @@ export function ContentRow({ title, items }: ContentRowProps) {
             {/* Scroll Container */}
             <div
                 ref={rowRef}
-                className="flex gap-4 overflow-x-auto no-scrollbar pb-40 -mb-32 pt-4 px-1 -ml-1 scroll-smooth"
+                className="flex gap-4 overflow-x-auto no-scrollbar pb-60 -mb-52 pt-10 -mt-6 px-12 -ml-12 scroll-smooth" // Increased x-padding to prevent left border clipping
                 style={{ scrollBehavior: 'smooth' }}
             >
                 {items.map((item, index) => (
-                    <ProjectCard
-                        key={item.id}
-                        project={item}
-                        isFirst={index === 0}
-                        isLast={index === items.length - 1}
-                    />
+                    <div key={item.id} className="relative z-0 hover:z-[100] transition-none">
+                        <ProjectCard
+                            project={item}
+                            isFirst={index === 0}
+                            isLast={index === items.length - 1}
+                        />
+                    </div>
                 ))}
                 {/* Spacer for end of list */}
                 <div className="w-8 shrink-0" />

@@ -1,19 +1,12 @@
 "use client";
 
 import { Header } from "@/components/layout/Header";
-import { User, Mail, Github, Linkedin, MapPin, Send } from "lucide-react";
-import { useState } from "react";
+import { Mail, Github, Linkedin, MapPin } from "lucide-react";
+
 import { PROFILE_DATA } from "@/data/mockData";
 
 export default function AboutPage() {
-    const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        setFormState('submitting');
-        // Simulate submission
-        setTimeout(() => setFormState('success'), 1500);
-    };
 
     return (
         <div className="min-h-screen bg-[#0f171e] pb-20">
@@ -46,8 +39,7 @@ export default function AboutPage() {
                             <span className="flex items-center gap-1"><Mail className="w-4 h-4" /> {PROFILE_DATA.email}</span>
                             <span>&middot;</span>
                             <span className="flex items-center gap-1">{PROFILE_DATA.phone}</span>
-                            <span>&middot;</span>
-                            <span>Available for hire</span>
+
                         </div>
                     </div>
 
@@ -123,48 +115,31 @@ export default function AboutPage() {
 
                 {/* Contact Section Styled as "Bonus Features" or similar */}
                 <section id="contact" className="pt-8 border-t border-gray-800">
-                    <h2 className="text-xl font-bold text-white mb-6">Bonus Features: Contact</h2>
+                    <h2 className="text-xl font-bold text-white mb-6">Contact</h2>
 
                     <div className="bg-[#19222B] p-8 rounded-lg max-w-2xl">
-                        {formState === 'success' ? (
-                            <div className="text-center py-12">
-                                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <Send className="w-8 h-8 text-white" />
+                        <div className="space-y-6 text-center md:text-left">
+                            <div className="space-y-2">
+                                <h3 className="text-2xl font-bold text-white">Akil S</h3>
+                                <div className="flex flex-col md:flex-row gap-4 text-gray-400">
+                                    <span className="flex items-center gap-2 hover:text-prime-blue transition-colors">
+                                        <Mail className="w-5 h-5" />
+                                        akilsaran195@gmail.com
+                                    </span>
+                                    <span className="hidden md:inline">&middot;</span>
+                                    <span className="flex items-center gap-2 hover:text-prime-blue transition-colors">
+                                        <span className="font-bold">Phone:</span>
+                                        +91 9611554474
+                                    </span>
                                 </div>
-                                <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-                                <p className="text-gray-400">Ty for watching. I'll get back to you shortly.</p>
-                                <button
-                                    onClick={() => setFormState('idle')}
-                                    className="mt-6 text-prime-blue hover:underline"
-                                >
-                                    Send another message
-                                </button>
                             </div>
-                        ) : (
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-400 mb-1">Name</label>
-                                        <input type="text" required className="w-full bg-[#0f171e] border border-gray-600 rounded p-3 text-white focus:border-prime-blue focus:outline-none transition-colors" placeholder="Your Name" />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-400 mb-1">Email</label>
-                                        <input type="email" required className="w-full bg-[#0f171e] border border-gray-600 rounded p-3 text-white focus:border-prime-blue focus:outline-none transition-colors" placeholder="your@email.com" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-400 mb-1">Message</label>
-                                    <textarea required rows={4} className="w-full bg-[#0f171e] border border-gray-600 rounded p-3 text-white focus:border-prime-blue focus:outline-none transition-colors" placeholder="Tell me about your project..." />
-                                </div>
-                                <button
-                                    type="submit"
-                                    disabled={formState === 'submitting'}
-                                    className="w-full bg-prime-blue hover:bg-prime-blue/90 text-white font-bold py-3 px-4 rounded transition-colors flex items-center justify-center gap-2"
-                                >
-                                    {formState === 'submitting' ? 'Sending...' : 'Send Message'}
-                                </button>
-                            </form>
-                        )}
+
+                            <div className="pt-4 border-t border-gray-700">
+                                <p className="text-gray-300 text-lg leading-relaxed italic">
+                                    "Let's build something impactful. Always open to discussing new projects, creative ideas, or opportunities to be part of your vision."
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div >

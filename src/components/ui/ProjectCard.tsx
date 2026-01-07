@@ -11,6 +11,7 @@ interface Project {
     description: string;
     tags?: string[];
     image?: string;
+    icon?: any; // React Icon component
 }
 
 import Link from "next/link";
@@ -20,9 +21,10 @@ interface ProjectCardProps {
     project: Project;
     isFirst?: boolean;
     isLast?: boolean;
+    className?: string;
 }
 
-export function ProjectCard({ project, isFirst = false, isLast = false }: ProjectCardProps) {
+export function ProjectCard({ project, className }: ProjectCardProps) {
     const [isHovered, setIsHovered] = useState(false);
     const router = useRouter();
 
@@ -32,31 +34,55 @@ export function ProjectCard({ project, isFirst = false, isLast = false }: Projec
 
     return (
         <motion.div
-            className="relative flex-shrink-0 w-[250px] md:w-[300px] aspect-video rounded-md cursor-pointer transition-all duration-300 z-0 hover:z-50"
-            style={{ transformOrigin: isFirst ? 'left center' : isLast ? 'right center' : 'center center' }}
+            className={cn(
+                "relative flex-shrink-0 w-[250px] md:w-[300px] aspect-video rounded-md cursor-pointer transition-all duration-300 z-0 hover:z-50",
+                className
+            )}
             onHoverStart={() => setIsHovered(true)}
             onHoverEnd={() => setIsHovered(false)}
             initial={{ scale: 1 }}
-            whileHover={{ scale: 1.25 }}
+            whileHover={{ scale: 1.15 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-            {/* Thumbnail */}
-            <div className={cn("w-full h-full rounded-md overflow-hidden bg-gray-800 relative transition-all duration-300", isHovered ? "rounded-b-none shadow-2xl ring-2 ring-[#0f171e]" : "")}>
-                {/* Placeholder for Image */}
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-gray-500">
-                    {/* Replace with Image component later */}
-                    <span className="text-sm font-semibold">{project.title}</span>
-                </div>
+            {/* Thumbnail - Gradient Card */}
+            <div className={cn(
+                "w-full h-full rounded-md overflow-hidden bg-gradient-to-br from-[#1b2530] to-[#10161d] relative transition-all duration-300 flex items-center justify-center p-6 text-center border-t border-white/5",
+                isHovered ? "rounded-b-none border-x-2 border-t-2 border-b-0 border-white shadow-[0_-10px_25px_rgba(255,255,255,0.1)] bg-[#1b2530]" : "border-transparent"
+            )}>
+                {project.icon ? (
+                    <div className="flex flex-col items-center gap-3">
+                        <project.icon className={cn(
+                            "w-12 h-12 text-gray-500 transition-colors duration-300",
+                            isHovered ? "text-white" : ""
+                        )} />
+                        <h3 className={cn(
+                            "text-lg font-bold text-gray-100 tracking-tight leading-snug transition-colors duration-300",
+                            isHovered ? "text-white" : ""
+                        )}>
+                            {project.title}
+                        </h3>
+                    </div>
+                ) : (
+                    <div className="space-y-2">
+                        <h3 className={cn(
+                            "text-lg md:text-xl font-bold text-gray-100 tracking-tight leading-snug transition-colors duration-300",
+                            isHovered ? "text-white scale-105" : ""
+                        )}>
+                            {project.title}
+                        </h3>
+                    </div>
+                )}
             </div>
 
             {/* Expanded Content (Visible on Hover) */}
             {isHovered && (
                 <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="absolute top-full left-0 right-0 bg-[#1A242F] p-3 rounded-b-md shadow-2xl border-x border-b border-gray-600/50 border-t-0 -mt-[1px] z-50"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.1 }}
+                    className="absolute top-full left-0 right-0 bg-[#1b2530] p-4 rounded-b-md shadow-[0_20px_40px_rgba(0,0,0,0.6)] border-x-2 border-b-2 border-white border-t-0 -mt-[2px] z-50 overflow-hidden" // -mt-[2px] to overlap 2px border
                     onClick={(e) => {
-                        e.stopPropagation(); // Prevent duplicate triggers if wrapper has click
+                        e.stopPropagation();
                         handleNavigate();
                     }}
                 >
