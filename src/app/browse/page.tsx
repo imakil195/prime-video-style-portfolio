@@ -13,7 +13,8 @@ export default function BrowsePage() {
         title: skill.title,
         description: `${skill.level} Proficiency in ${skill.category}`,
         tags: [skill.category, skill.level],
-        image: `/images/skills/${skill.category.toLowerCase()}.jpg` // Placeholder path, card will handle missing image
+        image: `/images/skills/${skill.category.toLowerCase()}.jpg`, // Placeholder path, card will handle missing image
+        icon: skill.icon
     }));
 
     return (

@@ -66,12 +66,12 @@ export default function SkillsPage() {
                                     transition={{ delay: idx * 0.1 }}
                                     className="bg-[#19222B] p-4 rounded-md flex items-center gap-4 group hover:bg-[#25303d] transition-colors cursor-pointer"
                                 >
-                                    {/* Episode Thumbnail / Number */}
-                                    <div className="relative w-32 h-20 bg-black rounded overflow-hidden flex-shrink-0">
-                                        <div className="absolute inset-0 flex items-center justify-center text-gray-600 font-bold text-2xl group-hover:text-prime-blue transition-colors">
-                                            {idx + 1}
-                                        </div>
-                                        <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors" />
+                                    {/* Episode Thumbnail / Icon */}
+                                    <div className="relative w-32 h-20 bg-black rounded overflow-hidden flex-shrink-0 flex items-center justify-center p-4">
+                                        {skill.icon && (
+                                            <skill.icon className="w-10 h-10 text-gray-500 group-hover:text-prime-blue transition-colors duration-300" />
+                                        )}
+                                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
                                         <Play className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
                                     </div>
 

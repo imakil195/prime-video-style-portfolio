@@ -27,61 +27,49 @@ export function Hero() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 1 }}
                 >
-                    {/* Background Image Placeholder */}
-                    {/* In a real app, use next/image with layout="fill" */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent z-10" />
-                    <div
-                        className="absolute inset-0 bg-cover bg-center opacity-60"
-                        style={{
-                            backgroundImage: `url(${TOP_PROJECTS[currentIndex].image})`,
-                            backgroundColor: '#111'
-                        }}
-                    />
+                    {/* Background - Minimalistic Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-black z-10" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-prime-blue/10 via-transparent to-transparent opacity-40" />
 
                     {/* Content Overlay */}
-                    <div className="absolute inset-0 z-40 flex items-center px-6 md:px-12 pt-20 pointer-events-none">
-                        <div className="max-w-xl space-y-4 pointer-events-auto">
-                            <motion.h1
-                                initial={{ y: 20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.5 }}
-                                className="text-4xl md:text-6xl font-bold text-white tracking-tight"
-                            >
-                                {TOP_PROJECTS[currentIndex].title}
-                            </motion.h1>
-
-                            <motion.p
-                                initial={{ y: 20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.6 }}
-                                className="text-lg md:text-xl text-gray-200 line-clamp-3"
-                            >
-                                {TOP_PROJECTS[currentIndex].description}
-                            </motion.p>
-
-                            <motion.div
-                                initial={{ y: 20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.7 }}
-                                className="flex items-center gap-4 pt-4"
-                            >
-                                <Link
-                                    href={`/projects/${TOP_PROJECTS[currentIndex].id}`}
-                                    className="flex items-center gap-2 bg-prime-blue hover:bg-prime-blue/90 text-white px-6 py-3 rounded-md font-bold text-lg transition-transform hover:scale-105 active:scale-95"
+                    <div className="absolute inset-0 z-40 flex items-center justify-center md:justify-start pointer-events-none">
+                        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 pt-20 pointer-events-auto">
+                            <div className="max-w-2xl space-y-6">
+                                <motion.h1
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.5 }}
+                                    className="text-4xl md:text-6xl font-bold text-white tracking-tight"
                                 >
-                                    <Play className="w-6 h-6 fill-current" />
-                                    View Project
-                                </Link>
+                                    {TOP_PROJECTS[currentIndex].title}
+                                </motion.h1>
 
-                                <button className="flex items-center gap-2 bg-[#425265]/80 hover:bg-[#425265] text-white px-6 py-3 rounded-md font-bold text-lg transition-transform hover:scale-105 active:scale-95 backdrop-blur-sm">
-                                    <Plus className="w-6 h-6" />
-                                    Watchlist
-                                </button>
+                                <motion.p
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.6 }}
+                                    className="text-lg md:text-xl text-gray-200 line-clamp-3"
+                                >
+                                    {TOP_PROJECTS[currentIndex].description}
+                                </motion.p>
 
-                                <button className="w-12 h-12 rounded-full border-2 border-gray-400 flex items-center justify-center hover:border-white hover:bg-white/10 transition-colors">
-                                    <Info className="w-6 h-6 text-gray-200" />
-                                </button>
-                            </motion.div>
+                                <motion.div
+                                    initial={{ y: 20, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.7 }}
+                                    className="flex items-center gap-4 pt-4"
+                                >
+                                    <Link
+                                        href={`/projects/${TOP_PROJECTS[currentIndex].id}`}
+                                        className="flex items-center gap-2 bg-prime-blue hover:bg-prime-blue/90 text-white px-6 py-3 rounded-md font-bold text-lg transition-transform hover:scale-105 active:scale-95"
+                                    >
+                                        <Play className="w-6 h-6 fill-current" />
+                                        View Project
+                                    </Link>
+
+                                    {/* Additional buttons removed for cleaner UI */}
+                                </motion.div>
+                            </div>
                         </div>
                     </div>
                 </motion.div>
