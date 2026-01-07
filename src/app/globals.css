@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Prime Video Dark Theme Palette */
+  --background: #0f171e;
+  --foreground: #ffffff;
+  
+  --prime-blue: #00A8E1;
+  --prime-hover: #1A242F;
+  --prime-card: #19222B;
 }
 
 @theme inline {
@@ -10,17 +15,32 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
+  
+  --color-prime-blue: var(--prime-blue);
+  --color-prime-hover: var(--prime-hover);
+  --color-prime-card: var(--prime-card);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --animate-scale-up: scale-up 0.3s ease forwards;
+  
+  @keyframes scale-up {
+    from { transform: scale(1); }
+    to { transform: scale(1.12); }
   }
 }
 
+/* Force dark mode behavior always */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Hide scrollbar for horizontal scrolling areas */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
