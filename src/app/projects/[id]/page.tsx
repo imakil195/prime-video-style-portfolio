@@ -111,7 +111,7 @@ export default function ProjectDetailsPage() {
                                 {/* Buttons removed for cleanliness as per final audit */}
                             </div>
 
-                            <div className="flex items-center gap-2 text-sm text-gray-400 font-medium mt-4">
+                            <div className="flex items-center gap-2 text-sm text-gray-400 font-medium mt-4 mb-12 md:mb-4">
                                 <Check className="w-4 h-4 text-[#00A8E1]" />
                                 Included with your Prime membership
                             </div>
@@ -121,7 +121,7 @@ export default function ProjectDetailsPage() {
             </div>
 
             {/* Tabs & Details Section */}
-            <div className="max-w-7xl mx-auto px-6 md:px-12 mt-8">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 mt-20 md:mt-8">
                 {/* Tabs */}
                 <div className="flex items-center gap-8 border-b border-gray-700 mb-8">
                     <button

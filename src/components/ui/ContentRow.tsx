@@ -31,7 +31,7 @@ export function ContentRow({ title, items, disableNavigation = false }: ContentR
     };
 
     return (
-        <div className="relative py-4 md:py-8 pl-4 md:pl-12 group hover:z-30">
+        <div className="relative py-6 md:py-8 pl-4 md:pl-12 group hover:z-30">
             {/* Header */}
             <div className="flex items-end gap-3 mb-2 md:mb-4 px-1">
                 <h2 className="text-lg md:text-xl font-bold text-prime-blue hover:underline cursor-pointer">

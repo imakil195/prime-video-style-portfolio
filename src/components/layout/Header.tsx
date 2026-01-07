@@ -132,7 +132,7 @@ export function Header() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed inset-0 top-16 bg-[#0f171e] z-40 md:hidden flex flex-col p-6 space-y-4 border-t border-gray-800"
+                        className="fixed inset-0 top-16 bg-[#0f171e] z-50 md:hidden flex flex-col p-6 space-y-4 border-t border-gray-800 overflow-y-auto"
                     >
                         {NAV_ITEMS.map((item) => (
                             <Link

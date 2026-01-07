@@ -24,7 +24,7 @@ export default function BrowsePage() {
             <main>
                 <Hero />
 
-                <div className="relative z-40 -mt-16 md:-mt-24 space-y-4 md:space-y-8 pb-10">
+                <div className="relative z-40 mt-4 md:-mt-24 space-y-4 md:space-y-8 pb-10">
                     <ContentRow title="Prime Originals: Projects" items={MOCK_PROJECTS_ROW} />
                     <ContentRow title="Prime Skills" items={skillsAsProjects} disableNavigation={true} />
                 </div>
