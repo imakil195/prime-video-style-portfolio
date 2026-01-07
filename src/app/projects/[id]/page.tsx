@@ -49,7 +49,7 @@ export default function ProjectDetailsPage() {
 
                 {/* Content Overlay */}
                 <div className="absolute inset-0 z-20 flex items-center">
-                    <div className="w-full max-w-7xl mx-auto px-6 md:px-12 pt-20">
+                    <div className="w-full max-w-7xl mx-auto px-6 md:px-12 pt-28 md:pt-20">
                         <div className="max-w-2xl space-y-6">
                             {/* Super Title / Badge */}
                             <span className="text-[#00A8E1] font-bold tracking-widest text-sm uppercase mb-2 block">

@@ -20,7 +20,7 @@ export default function AboutPage() {
 
                 <div className="absolute bottom-0 left-0 w-full px-4 md:px-12 pb-12 flex flex-col md:flex-row items-center md:items-end gap-6 md:gap-8">
                     {/* Profile Avatar */}
-                    <div className="w-28 h-28 md:w-48 md:h-48 rounded-full border-4 border-gray-600/50 bg-gray-700 overflow-hidden shadow-2xl md:-skew-y-2 transform md:origin-bottom-left">
+                    <div className="hidden md:block w-28 h-28 md:w-48 md:h-48 rounded-full border-4 border-gray-600/50 bg-gray-700 overflow-hidden shadow-2xl md:-skew-y-2 transform md:origin-bottom-left">
                         <img
                             src="/akilphoto.jpg"
                             alt={PROFILE_DATA.name}
