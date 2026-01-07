@@ -23,6 +23,9 @@ export function Header() {
     const pathname = usePathname();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+    // Check if on project detail or about page (hide logo on mobile for these)
+    const isProjectOrAboutPage = pathname.startsWith('/projects/') || pathname === '/about';
+
     return (
         <>
             <header
@@ -30,7 +33,8 @@ export function Header() {
                     "fixed top-0 left-0 right-0 z-50 transition-colors duration-300 h-16 flex items-center px-4 md:px-12",
                     isScrolled
                         ? "bg-[#0f171e]/90 backdrop-blur-md shadow-lg"
-                        : "bg-gradient-to-b from-black/80 to-transparent"
+                        : "bg-gradient-to-b from-black/80 to-transparent",
+                    isMobileMenuOpen && "bg-[#0f171e] backdrop-blur-xl md:bg-transparent md:backdrop-blur-none"
                 )}
             >
                 <div className="flex items-center gap-8 w-full">
@@ -44,8 +48,11 @@ export function Header() {
                     </button>
 
                     <div className="flex items-center gap-8">
-                        {/* Logo */}
-                        <Link href="/browse" className="group flex items-center gap-1 text-xl md:text-2xl font-bold tracking-tight text-white select-none">
+                        {/* Logo - Hidden on project/about pages on mobile */}
+                        <Link href="/browse" className={cn(
+                            "group flex items-center gap-1 text-xl md:text-2xl font-bold tracking-tight text-white select-none",
+                            isProjectOrAboutPage && "hidden md:flex"
+                        )}>
                             <motion.span
                                 whileHover={{ x: -2 }}
                                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -115,9 +122,9 @@ export function Header() {
                             <ChevronDown className="w-3 h-3 text-gray-500 group-hover:text-white transition-colors" />
                         </Link>
 
-                        <Link href="/about" className="hover:text-white transition-colors p-1 flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-gray-700 overflow-hidden flex items-center justify-center border border-transparent hover:border-white transition-all">
-                                <User className="w-5 h-5" />
+                        <Link href="/about" className="hover:text-white transition-colors p-1 flex items-center gap-2 mt-2 md:mt-0">
+                            <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-gray-700 overflow-hidden flex items-center justify-center border border-transparent hover:border-white transition-all">
+                                <User className="w-4 h-4 md:w-5 md:h-5" />
                             </div>
                         </Link>
                     </div>
@@ -132,7 +139,7 @@ export function Header() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed inset-0 top-16 bg-[#0f171e] z-50 md:hidden flex flex-col p-6 space-y-4 border-t border-gray-800 overflow-y-auto"
+                        className="fixed inset-0 top-0 bg-[#0f171e] z-[60] md:hidden flex flex-col p-6 pt-20 space-y-4 overflow-y-auto"
                     >
                         {NAV_ITEMS.map((item) => (
                             <Link
