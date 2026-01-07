@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useScrolled } from "@/hooks/useScrolled";
 import { cn } from "@/lib/utils";
 import { SearchOverlay } from "./SearchOverlay";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_ITEMS = [
     { label: "Home", href: "/browse" },
@@ -21,6 +21,7 @@ export function Header() {
     const isScrolled = useScrolled(20);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const pathname = usePathname();
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     return (
         <>
@@ -34,7 +35,11 @@ export function Header() {
             >
                 <div className="flex items-center gap-8 w-full">
                     {/* Mobile Menu Trigger (Hidden on Desktop) */}
-                    <button className="md:hidden text-gray-200 hover:text-white">
+                    <button
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        className="md:hidden text-gray-200 hover:text-white z-50 relative"
+                        aria-label="Toggle menu"
+                    >
                         <Menu className="w-6 h-6" />
                     </button>
 
@@ -118,6 +123,40 @@ export function Header() {
                     </div>
                 </div>
             </header>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.2 }}
+                        className="fixed inset-0 top-16 bg-[#0f171e] z-40 md:hidden flex flex-col p-6 space-y-4 border-t border-gray-800"
+                    >
+                        {NAV_ITEMS.map((item) => (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className={cn(
+                                    "text-lg font-medium py-2 border-b border-gray-800",
+                                    pathname === item.href ? "text-white" : "text-gray-400"
+                                )}
+                            >
+                                {item.label}
+                            </Link>
+                        ))}
+                        <Link
+                            href="/"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="text-lg font-medium py-2 text-prime-blue mt-4 flex items-center gap-2"
+                        >
+                            Switch Profiles <ChevronDown className="w-4 h-4" />
+                        </Link>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
         </>

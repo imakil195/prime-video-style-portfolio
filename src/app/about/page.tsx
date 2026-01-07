@@ -18,9 +18,9 @@ export default function AboutPage() {
                 <div className="absolute inset-0 bg-gray-800 opacity-30 mix-blend-overlay" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0f171e] via-[#0f171e]/40 to-transparent" />
 
-                <div className="absolute bottom-0 left-0 w-full px-4 md:px-12 pb-12 flex flex-col md:flex-row items-end gap-8">
+                <div className="absolute bottom-0 left-0 w-full px-4 md:px-12 pb-12 flex flex-col md:flex-row items-center md:items-end gap-6 md:gap-8">
                     {/* Profile Avatar */}
-                    <div className="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-gray-600/50 bg-gray-700 overflow-hidden shadow-2xl skew-y-0 md:-skew-y-2 transform origin-bottom-left">
+                    <div className="w-28 h-28 md:w-48 md:h-48 rounded-full border-4 border-gray-600/50 bg-gray-700 overflow-hidden shadow-2xl md:-skew-y-2 transform md:origin-bottom-left">
                         <img
                             src="/akilphoto.jpg"
                             alt={PROFILE_DATA.name}
@@ -29,11 +29,11 @@ export default function AboutPage() {
                     </div>
 
                     {/* Info */}
-                    <div className="flex-1 space-y-2 mb-2">
+                    <div className="flex-1 space-y-2 mb-2 text-center md:text-left w-full">
                         <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight">{PROFILE_DATA.name}</h1>
                         <p className="text-xl text-prime-blue font-semibold">{PROFILE_DATA.role}</p>
 
-                        <div className="flex flex-wrap items-center gap-4 text-gray-400 text-sm mt-2">
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-gray-400 text-sm mt-2">
                             <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {PROFILE_DATA.location}</span>
                             <span>&middot;</span>
                             <span className="flex items-center gap-1"><Mail className="w-4 h-4" /> {PROFILE_DATA.email}</span>
@@ -44,15 +44,15 @@ export default function AboutPage() {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex gap-4 mb-4">
+                    <div className="flex gap-4 mb-4 justify-center md:justify-start w-full md:w-auto">
                         <a href="#contact" className="bg-white text-black font-bold py-3 px-8 rounded hover:bg-gray-200 transition-colors flex items-center gap-2">
                             <Mail className="w-5 h-5" />
                             Contact Me
                         </a>
-                        <a href={PROFILE_DATA.social.github} target="_blank" rel="noreferrer" className="bg-[#425265]/80 text-white font-bold py-3 px-4 rounded hover:bg-[#425265] transition-colors flex items-center justify-center">
+                        <a href={PROFILE_DATA.social.github} target="_blank" rel="noopener noreferrer" className="bg-[#425265]/80 text-white font-bold py-3 px-4 rounded hover:bg-[#425265] transition-colors flex items-center justify-center">
                             <Github className="w-5 h-5" />
                         </a>
-                        <a href={PROFILE_DATA.social.linkedin} target="_blank" rel="noreferrer" className="bg-[#425265]/80 text-white font-bold py-3 px-4 rounded hover:bg-[#425265] transition-colors flex items-center justify-center">
+                        <a href={PROFILE_DATA.social.linkedin} target="_blank" rel="noopener noreferrer" className="bg-[#425265]/80 text-white font-bold py-3 px-4 rounded hover:bg-[#425265] transition-colors flex items-center justify-center">
                             <Linkedin className="w-5 h-5" />
                         </a>
                     </div>
@@ -62,7 +62,7 @@ export default function AboutPage() {
             {/* Content - "Bio" as Synopsis */}
             <div className="px-4 md:px-12 max-w-5xl mx-auto mt-8 space-y-12">
                 <section>
-                    <h2 className="text-xl font-bold text-white mb-4">Synopsis</h2>
+                    <h2 className="text-xl font-bold text-white mb-4">Executive Summary</h2>
                     <p className="text-gray-300 text-lg leading-relaxed">
                         {PROFILE_DATA.bio}
                     </p>

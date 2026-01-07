@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play } from "lucide-react";
+import { Play, ChevronDown } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { SKILLS_DATA } from "@/data/mockData";
 import { cn } from "@/lib/utils";
@@ -18,6 +18,7 @@ const SEASONS = [
 
 export default function SkillsPage() {
     const [activeSeason, setActiveSeason] = useState(SEASONS[0]);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     // Filter skills based on active season/category
     const filteredSkills = SKILLS_DATA.filter(s => s.category === activeSeason.category);
@@ -32,7 +33,49 @@ export default function SkillsPage() {
 
                 {/* Seasons Selector */}
                 <div className="flex flex-col md:flex-row gap-6 mb-10">
-                    <div className="flex flex-col gap-2 min-w-[250px]">
+
+                    {/* Mobile Dropdown (Vertical with Arrow) */}
+                    <div className="md:hidden relative z-20">
+                        <button
+                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                            className="w-full flex items-center justify-between bg-gray-800 text-white px-4 py-3 rounded-md border border-gray-700 font-bold"
+                        >
+                            <span>{activeSeason.title}</span>
+                            <ChevronDown className={cn("w-5 h-5 transition-transform", isDropdownOpen ? "rotate-180" : "")} />
+                        </button>
+
+                        <AnimatePresence>
+                            {isDropdownOpen && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    className="absolute top-full left-0 right-0 mt-2 bg-[#19222B] border border-gray-700 rounded-md shadow-xl overflow-hidden"
+                                >
+                                    {SEASONS.map(season => (
+                                        <button
+                                            key={season.id}
+                                            onClick={() => {
+                                                setActiveSeason(season);
+                                                setIsDropdownOpen(false);
+                                            }}
+                                            className={cn(
+                                                "w-full text-left px-4 py-3 text-sm font-medium transition-colors border-l-4",
+                                                activeSeason.id === season.id
+                                                    ? "bg-gray-800 border-prime-blue text-prime-blue"
+                                                    : "border-transparent text-gray-300 hover:bg-gray-800"
+                                            )}
+                                        >
+                                            {season.title}
+                                        </button>
+                                    ))}
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+
+                    {/* Desktop Vertical List */}
+                    <div className="hidden md:flex flex-col gap-2 min-w-[250px]">
                         <span className="text-lg font-bold text-white mb-2">Seasons</span>
                         {SEASONS.map(season => (
                             <button
@@ -64,15 +107,14 @@ export default function SkillsPage() {
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: idx * 0.1 }}
-                                    className="bg-[#19222B] p-4 rounded-md flex items-center gap-4 group hover:bg-[#25303d] transition-colors cursor-pointer"
+                                    className="bg-[#19222B] p-4 rounded-md flex items-center gap-4"
                                 >
                                     {/* Episode Thumbnail / Icon */}
                                     <div className="relative w-32 h-20 bg-black rounded overflow-hidden flex-shrink-0 flex items-center justify-center p-4">
                                         {skill.icon && (
-                                            <skill.icon className="w-10 h-10 text-gray-500 group-hover:text-prime-blue transition-colors duration-300" />
+                                            <skill.icon className="w-10 h-10 text-gray-500" />
                                         )}
-                                        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
-                                        <Play className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        <div className="absolute inset-0 bg-black/10" />
                                     </div>
 
                                     {/* Info */}
@@ -84,7 +126,7 @@ export default function SkillsPage() {
                                     </div>
 
                                     <div className="text-gray-500 text-sm font-mono mr-4">
-                                        {Math.floor(Math.random() * 30) + 10}m
+                                        {(skill.title.length + idx * 5) % 30 + 12}m
                                     </div>
                                 </motion.div>
                             ))}

@@ -160,10 +160,20 @@ export default function ProjectDetailsPage() {
                             {project.features?.map((feature: string, idx: number) => (
                                 <div key={idx} className="group cursor-pointer bg-[#19222B] hover:bg-[#232f3c] p-6 rounded-lg flex flex-col md:flex-row gap-6 transition-colors border border-transparent hover:border-gray-600">
                                     {/* Thumbnail Placeholder */}
-                                    <div className="w-full md:w-64 aspect-video bg-gray-800 rounded relative overflow-hidden flex-shrink-0 group-hover:scale-[1.02] transition-transform">
+                                    <div className="w-full md:w-64 aspect-video bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded relative overflow-hidden flex-shrink-0 group-hover:scale-[1.02] transition-transform">
+                                        {/* Large Episode Number Background */}
+                                        <div className="absolute inset-0 flex items-center justify-center opacity-10">
+                                            <span className="text-[120px] font-black text-white">{idx + 1}</span>
+                                        </div>
+                                        {/* Subtle Grid Pattern */}
+                                        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                                        {/* Prime Blue Accent */}
+                                        <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-prime-blue/50 to-transparent"></div>
+                                        {/* Play Button */}
                                         <div className="absolute inset-0 flex items-center justify-center">
                                             <Play className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" />
                                         </div>
+                                        {/* Duration Badge */}
                                         <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-0.5 text-xs text-white rounded">
                                             {10 + idx}m
                                         </div>
@@ -172,8 +182,9 @@ export default function ProjectDetailsPage() {
                                     {/* Info */}
                                     <div className="flex-1 py-1">
                                         <div className="flex justify-between items-start mb-2">
-                                            <h4 className="text-white font-bold text-lg group-hover:text-prime-blue transition-colors">
-                                                {idx + 1}. {feature}
+                                            <h4 className="text-white font-bold text-lg group-hover:text-prime-blue transition-colors flex items-center">
+                                                <span className="text-gray-500 font-light mr-4 text-2xl">{idx + 1}</span>
+                                                {feature}
                                             </h4>
                                             <span className="text-gray-400 text-sm">March 2025</span>
                                         </div>

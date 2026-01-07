@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { User, Code, Briefcase, FileText, Plus } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const PROFILES = [
   {
@@ -36,6 +37,12 @@ const PROFILES = [
 ];
 
 export default function ProfileGate() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    setIsDesktop(window.innerWidth >= 768);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#0f171e] flex flex-col items-center justify-center relative overflow-hidden">
 
@@ -59,7 +66,7 @@ export default function ProfileGate() {
           {PROFILES.map((profile, idx) => (
             <Link key={profile.id} href={profile.href} className="group flex flex-col items-center gap-4">
               <motion.div
-                whileHover={{ scale: 1.05 }}
+                whileHover={isDesktop ? { scale: 1.05 } : {}}
                 whileTap={{ scale: 0.95 }}
                 className={`w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-br ${profile.color} flex items-center justify-center shadow-2xl relative overflow-hidden group-hover:ring-4 ring-white/80 transition-all duration-200`}
               >

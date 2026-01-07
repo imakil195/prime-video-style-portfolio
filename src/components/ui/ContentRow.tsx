@@ -8,9 +8,10 @@ import { cn } from "@/lib/utils";
 interface ContentRowProps {
     title: string;
     items: any[]; // Replace with proper type
+    disableNavigation?: boolean;
 }
 
-export function ContentRow({ title, items }: ContentRowProps) {
+export function ContentRow({ title, items, disableNavigation = false }: ContentRowProps) {
     const rowRef = useRef<HTMLDivElement>(null);
     const [scrollPos, setScrollPos] = useState(0);
 
@@ -73,6 +74,7 @@ export function ContentRow({ title, items }: ContentRowProps) {
                             project={item}
                             isFirst={index === 0}
                             isLast={index === items.length - 1}
+                            disableNavigation={disableNavigation}
                         />
                     </div>
                 ))}

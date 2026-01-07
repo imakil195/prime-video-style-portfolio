@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Play, Plus, Info } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 interface Project {
@@ -22,26 +22,41 @@ interface ProjectCardProps {
     isFirst?: boolean;
     isLast?: boolean;
     className?: string;
+    disableNavigation?: boolean;
 }
 
-export function ProjectCard({ project, className }: ProjectCardProps) {
+export function ProjectCard({ project, className, disableNavigation = false }: ProjectCardProps) {
     const [isHovered, setIsHovered] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(true); // Default to true to prevent flash on desktop, or false? True is better for desktop-first aesthetic usually, but mobile is priority here. Let's use true and useEffect to set false if mobile. Or just check.
     const router = useRouter();
 
+    useEffect(() => {
+        const checkDesktop = () => {
+            setIsDesktop(window.innerWidth >= 768);
+        };
+        checkDesktop();
+        window.addEventListener('resize', checkDesktop);
+        return () => window.removeEventListener('resize', checkDesktop);
+    }, []);
+
     const handleNavigate = () => {
-        router.push(`/projects/${project.id}`);
+        if (!disableNavigation) {
+            router.push(`/projects/${project.id}`);
+        }
     };
 
     return (
         <motion.div
             className={cn(
-                "relative flex-shrink-0 w-[250px] md:w-[300px] aspect-video rounded-md cursor-pointer transition-all duration-300 z-0 hover:z-50",
+                "relative flex-shrink-0 w-[250px] md:w-[300px] aspect-video rounded-md transition-all duration-300 z-0 hover:z-50",
+                disableNavigation ? "cursor-default" : "cursor-pointer",
                 className
             )}
-            onHoverStart={() => setIsHovered(true)}
-            onHoverEnd={() => setIsHovered(false)}
+            onClick={disableNavigation ? undefined : handleNavigate}
+            onHoverStart={() => isDesktop && setIsHovered(true)}
+            onHoverEnd={() => isDesktop && setIsHovered(false)}
             initial={{ scale: 1 }}
-            whileHover={{ scale: 1.15 }}
+            whileHover={isDesktop ? { scale: 1.15 } : {}}
             transition={{ duration: 0.3, ease: "easeInOut" }}
         >
             {/* Thumbnail - Gradient Card */}
@@ -100,10 +115,10 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
                         </button>
 
                         <div className="flex items-center gap-2">
-                            <button className="w-8 h-8 rounded-full border-2 border-gray-400/60 flex items-center justify-center hover:border-white hover:bg-white/10 transition-colors">
+                            <button className="w-8 h-8 rounded-full border-2 border-gray-400/60 flex items-center justify-center hover:border-white hover:bg-white/10 transition-colors" aria-label="Add to Watchlist">
                                 <Plus className="w-4 h-4 text-gray-200" />
                             </button>
-                            <button className="w-8 h-8 rounded-full border-2 border-gray-400/60 flex items-center justify-center hover:border-white hover:bg-white/10 transition-colors">
+                            <button className="w-8 h-8 rounded-full border-2 border-gray-400/60 flex items-center justify-center hover:border-white hover:bg-white/10 transition-colors" aria-label="More Info">
                                 <Info className="w-4 h-4 text-gray-200" />
                             </button>
 
