@@ -32,7 +32,6 @@ export const ALL_PROJECTS = [
         features: ["Google Gemini AI Assistant", "Subject-wise Analytics", "Firebase Cloud Sync", "Glassmorphism UI Design"],
         tags: ["React", "TypeScript", "Firebase", "Gemini API", "Tailwind"],
         featured: true,
-        link: "https://study-buddy-app-nu.vercel.app/",
         github: "https://github.com/imakil195/study-buddy-app"
     },
     {
